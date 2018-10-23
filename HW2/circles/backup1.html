@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Datarc</title>
+	<link rel="stylesheet" type="text/css" href="backstyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,600,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="circles/css/circle.css">
+
+	<style type="text/css">.star-icon {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4Ny4yMjIgNDg3LjIyMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg3LjIyMiA0ODcuMjIyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+CjxnPgoJPHBhdGggZD0iTTQ4Ni41NTQsMTg2LjgxMWMtMS42LTQuOS01LjgtOC40LTEwLjktOS4ybC0xNTItMjEuNmwtNjguNC0xMzcuNWMtMi4zLTQuNi03LTcuNS0xMi4xLTcuNWwwLDBjLTUuMSwwLTkuOCwyLjktMTIuMSw3LjYgICBsLTY3LjUsMTM3LjlsLTE1MiwyMi42Yy01LjEsMC44LTkuMyw0LjMtMTAuOSw5LjJzLTAuMiwxMC4zLDMuNSwxMy44bDExMC4zLDEwNi45bC0yNS41LDE1MS40Yy0wLjksNS4xLDEuMiwxMC4yLDUuNCwxMy4yICAgYzIuMywxLjcsNS4xLDIuNiw3LjksMi42YzIuMiwwLDQuMy0wLjUsNi4zLTEuNmwxMzUuNy03MS45bDEzNi4xLDcxLjFjMiwxLDQuMSwxLjUsNi4yLDEuNWwwLDBjNy40LDAsMTMuNS02LjEsMTMuNS0xMy41ICAgYzAtMS4xLTAuMS0yLjEtMC40LTMuMWwtMjYuMy0xNTAuNWwxMDkuNi0xMDcuNUM0ODYuODU0LDE5Ny4xMTEsNDg4LjE1NCwxOTEuNzExLDQ4Ni41NTQsMTg2LjgxMXogTTM0OS41NTQsMjkzLjkxMSAgIGMtMy4yLDMuMS00LjYsNy42LTMuOCwxMmwyMi45LDEzMS4zbC0xMTguMi02MS43Yy0zLjktMi4xLTguNi0yLTEyLjYsMGwtMTE3LjgsNjIuNGwyMi4xLTEzMS41YzAuNy00LjQtMC43LTguOC0zLjktMTEuOSAgIGwtOTUuNi05Mi44bDEzMS45LTE5LjZjNC40LTAuNyw4LjItMy40LDEwLjEtNy40bDU4LjYtMTE5LjdsNTkuNCwxMTkuNGMyLDQsNS44LDYuNywxMC4yLDcuNGwxMzIsMTguOEwzNDkuNTU0LDI5My45MTF6IiBmaWxsPSIjMmNmZmEwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)}</style>
+
+		<style type="text/css">div.image {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9Ii0xMSAwIDQxMiA0MTIuMDM5ODQiIHdpZHRoPSI2NHB4Ij48cGF0aCBkPSJtMjc5LjEwMTU2MiAxNzIuNzA3MDMxIDI4LjM3ODkwNy02Ny42NDA2MjVjMS42NDQ1MzEtMy45MTc5NjguNjI4OTA2LTguNDQ5MjE4LTIuNTI3MzQ0LTExLjI5Njg3NS0zLjE2MDE1Ni0yLjg0Mzc1LTcuNzczNDM3LTMuMzgyODEyLTExLjUtMS4zMzk4NDNsLTYzLjYwOTM3NSAzNC44NjcxODctNTQuMTk5MjE5LTQ4LjU0Mjk2OWMtMy4xNzU3ODEtMi44NDM3NS03LjgwODU5My0zLjM2MzI4MS0xMS41MzEyNS0xLjI4OTA2Mi0zLjcyNjU2MiAyLjA3MDMxMi01LjczMDQ2OSA2LjI3NzM0NC00Ljk4ODI4MSAxMC40NzY1NjJsMTIuNzY1NjI1IDcyLjMzOTg0NC02Mi4zNTU0NjkgMzcuMzIwMzEyYy0zLjY0NDUzMSAyLjE3OTY4OC01LjUxMTcxOCA2LjQyMTg3Ni00LjY2NDA2MiAxMC41ODIwMzIuODUxNTYyIDQuMTYwMTU2IDQuMjM0Mzc1IDcuMzI4MTI1IDguNDQxNDA2IDcuOTA2MjVsMzguNDg0Mzc1IDUuMjgxMjUtODUuNDYwOTM3IDg1LjQ2NDg0NC0uMDA3ODEzLjAwNzgxMi0uMDA3ODEzLjAwMzkwNi01OC4zMzIwMzEgNTguMzMyMDMyYy0xMC42NTYyNSAxMC43NTM5MDYtMTAuNjIxMDkzIDI4LjEwMTU2Mi4wODU5MzggMzguODA0Njg3IDEwLjcwNzAzMSAxMC43MDcwMzEgMjguMDU0Njg3IDEwLjc0NjA5NCAzOC44MDQ2ODcuMDg1OTM3bDE0NS42NTYyNS0xNDUuNjU2MjUgOC41NTQ2ODggMzkuMzU5Mzc2Yy45MDYyNSA0LjE3NTc4MSA0LjM2NzE4NyA3LjMxMjUgOC42MTMyODEgNy44MDg1OTMuMzgyODEzLjA0Njg3NS43NzM0MzcuMDcwMzEzIDEuMTY0MDYzLjA3MDMxMyAzLjg0NzY1Ni0uMDAzOTA2IDcuMzU1NDY4LTIuMjE0ODQ0IDkuMDE1NjI0LTUuNjgzNTk0bDMxLjY0NDUzMi02Ni4xMjg5MDYgNzIuMTk5MjE4IDYuNjA1NDY4YzQuMjMwNDY5LjM5MDYyNiA4LjIzODI4Mi0xLjkzMzU5MyAxMC4wMDc4MTMtNS43OTY4NzQgMS43NjU2MjUtMy44NTkzNzYuOTAyMzQ0LTguNDE0MDYzLTIuMTUyMzQ0LTExLjM1OTM3NnptLTI0Ni4zNTkzNzQgMjE3LjIxODc1Yy0yLjkzMzU5NCAyLjkxMDE1Ny03LjY2NDA2MyAyLjg5ODQzOC0xMC41ODU5MzgtLjAxOTUzMS0yLjkxNzk2OS0yLjkyMTg3NS0yLjkyOTY4OC03LjY1MjM0NC0uMDIzNDM4LTEwLjU4NTkzOGw1MS4yNjU2MjYtNTEuMjY1NjI0IDEwLjYwNTQ2OCAxMC42MDU0Njh6bTY1LjQwMjM0My02NS40MDYyNS0xMC42MDU0NjktMTAuNjA1NDY5IDg5LjEyODkwNy04OS4xMjg5MDYgOC44MzU5MzcgMS4yMTA5MzggMS45OTIxODggOS4xNzU3ODF6bTE0OC4yNzczNDQtMTExLjIzMDQ2OWMtNC4xNjc5NjktLjM4MjgxMi04LjEyODkwNiAxLjg2NzE4OC05LjkzMzU5NCA1LjY0MDYyNmwtMjIuMDUwNzgxIDQ2LjA3NDIxOC0xMC44NzEwOTQtNTAuMDgyMDMxYy0uODkwNjI1LTQuMTA1NDY5LTQuMjUzOTA2LTcuMjE0ODQ0LTguNDE0MDYyLTcuNzg1MTU2bC01MC45MjU3ODItNi45OTIxODggNDMuODM5ODQ0LTI2LjIzODI4MWMzLjU1ODU5NC0yLjEyODkwNiA1LjQzMzU5NC02LjIzNDM3NSA0LjcxNDg0NC0xMC4zMTY0MDZsLTguOTM3NS01MC42NDA2MjUgMzcuOTI1NzgxIDMzLjk2ODc1YzMuMTYwMTU3IDIuODMyMDMxIDcuNzYxNzE5IDMuMzU5Mzc1IDExLjQ4MDQ2OSAxLjMyMDMxMmw0NC43MTA5MzgtMjQuNTA3ODEyLTE5Ljk1MzEyNiA0Ny41NTQ2ODdjLTEuNTk3NjU2IDMuODA0Njg4LS42OTE0MDYgOC4yMDMxMjUgMi4yODEyNSAxMS4wNzAzMTNsMzYuOTE0MDYzIDM1LjU4MjAzMXptMCAwIiBmaWxsPSIjMDBmZjhjIi8+PHBhdGggZD0ibTI4Ni4wODIwMzEgMjc4LjkyOTY4OGMtMi4zODI4MTItNC45ODQzNzYtOC4zNTE1NjItNy4wOTM3NS0xMy4zMzU5MzctNC43MTQ4NDRzLTcuMDkzNzUgOC4zNDc2NTYtNC43MTQ4NDQgMTMuMzMyMDMxbDExLjMzNTkzOCAyMy43NWMyLjM3ODkwNiA0Ljk4MDQ2OSA4LjM0NzY1NiA3LjA5Mzc1IDEzLjMzMjAzMSA0LjcxNDg0NCA0Ljk4NDM3NS0yLjM3ODkwNyA3LjA5NzY1Ni04LjM1MTU2MyA0LjcxODc1LTEzLjMzMjAzMXptMCAwIiBmaWxsPSIjMDBmZjhjIi8+PHBhdGggZD0ibTI0MC4yMDcwMzEgODAuNjg3NWM1LjUxOTUzMSAwIDEwLTQuNDc2NTYyIDEwLTEwdi02MC42ODc1YzAtNS41MjM0MzgtNC40ODA0NjktMTAtMTAtMTAtNS41MjM0MzcgMC0xMCA0LjQ3NjU2Mi0xMCAxMHY2MC42ODc1YzAgNS41MjM0MzggNC40NzY1NjMgMTAgMTAgMTB6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjxwYXRoIGQ9Im0zNzcuNDE3OTY5IDEzOS4zMzIwMzEtNDAuODQ3NjU3IDguNDQ1MzEzYy0zLjUwMzkwNi43MTQ4NDQtNi4zNTkzNzQgMy4yNS03LjQ4ODI4MSA2LjY0NDUzMS0xLjEyODkwNiAzLjM5ODQzNy0uMzU1NDY5IDcuMTM2NzE5IDIuMDI3MzQ0IDkuODA4NTk0IDIuMzgyODEzIDIuNjY3OTY5IDYuMDA3ODEzIDMuODYzMjgxIDkuNTExNzE5IDMuMTMyODEybDQwLjg0Mzc1LTguNDQ1MzEyYzMuNTA3ODEyLS43MTQ4NDQgNi4zNjMyODEtMy4yNSA3LjQ5MjE4Ny02LjY0ODQzOCAxLjEyNS0zLjM5NDUzMS4zNTU0NjktNy4xMzI4MTItMi4wMjczNDMtOS44MDQ2ODctMi4zODI4MTMtMi42NzE4NzUtNi4wMDc4MTMtMy44NjcxODgtOS41MTE3MTktMy4xMzI4MTN6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjxwYXRoIGQ9Im02OS4zOTQ1MzEgMTMxLjM5ODQzOCA0Ni4wMjczNDQgNy43NTc4MTJjMy41MzkwNjMuNjI1IDcuMTM2NzE5LS42OTUzMTIgOS40MzM1OTQtMy40NTcwMzFzMi45MzM1OTMtNi41NDI5NjkgMS42NzE4NzUtOS45MDYyNWMtMS4yNjU2MjUtMy4zNjMyODEtNC4yMzQzNzUtNS43ODkwNjMtNy43ODEyNS02LjM1OTM3NWwtNDYuMDIzNDM4LTcuNzU3ODEzYy01LjQyMTg3NS0uODY3MTg3LTEwLjUzMTI1IDIuNzk2ODc1LTExLjQ0NTMxMiA4LjIxMDkzOC0uOTEwMTU2IDUuNDE0MDYyIDIuNzEwOTM3IDEwLjU1NDY4NyA4LjExNzE4NyAxMS41MTE3MTl6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjwvc3ZnPgo=)}</style>
+
+		<style type="text/css">div.image {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMwMi40IDMwMi40IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMDIuNCAzMDIuNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yMDQuOCw5Ny42QzE5MS4yLDg0LDE3Miw3NS4yLDE1MS4yLDc1LjJzLTQwLDguNC01My42LDIyLjRjLTEzLjYsMTMuNi0yMi40LDMyLjgtMjIuNCw1My42czguOCw0MCwyMi40LDUzLjYgICAgYzEzLjYsMTMuNiwzMi44LDIyLjQsNTMuNiwyMi40czQwLTguNCw1My42LTIyLjRjMTMuNi0xMy42LDIyLjQtMzIuOCwyMi40LTUzLjZTMjE4LjgsMTExLjIsMjA0LjgsOTcuNnogTTE5MC40LDE5MC40ICAgIGMtMTAsMTAtMjQsMTYtMzkuMiwxNnMtMjkuMi02LTM5LjItMTZzLTE2LTI0LTE2LTM5LjJzNi0yOS4yLDE2LTM5LjJzMjQtMTYsMzkuMi0xNnMyOS4yLDYsMzkuMiwxNnMxNiwyNCwxNiwzOS4yICAgIFMyMDAuNCwxODAuNCwxOTAuNCwxOTAuNHoiIGZpbGw9IiMwMGZmOGMiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yOTIsMTQwLjhoLTMwLjhjLTUuNiwwLTEwLjQsNC44LTEwLjQsMTAuNGMwLDUuNiw0LjgsMTAuNCwxMC40LDEwLjRIMjkyYzUuNiwwLDEwLjQtNC44LDEwLjQtMTAuNCAgICBDMzAyLjQsMTQ1LjYsMjk3LjYsMTQwLjgsMjkyLDE0MC44eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTE1MS4yLDI1MC44Yy01LjYsMC0xMC40LDQuOC0xMC40LDEwLjRWMjkyYzAsNS42LDQuOCwxMC40LDEwLjQsMTAuNGM1LjYsMCwxMC40LTQuOCwxMC40LTEwLjR2LTMwLjggICAgQzE2MS42LDI1NS42LDE1Ni44LDI1MC44LDE1MS4yLDI1MC44eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI1OCwyNDMuNmwtMjItMjJjLTMuNi00LTEwLjQtNC0xNC40LDBzLTQsMTAuNCwwLDE0LjRsMjIsMjJjNCw0LDEwLjQsNCwxNC40LDBTMjYyLDI0Ny42LDI1OCwyNDMuNnoiIGZpbGw9IiMwMGZmOGMiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTEuMiwwYy01LjYsMC0xMC40LDQuOC0xMC40LDEwLjR2MzAuOGMwLDUuNiw0LjgsMTAuNCwxMC40LDEwLjRjNS42LDAsMTAuNC00LjgsMTAuNC0xMC40VjEwLjQgICAgQzE2MS42LDQuOCwxNTYuOCwwLDE1MS4yLDB6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjU4LjQsNDQuNGMtNC00LTEwLjQtNC0xNC40LDBsLTIyLDIyYy00LDQtNCwxMC40LDAsMTQuNGMzLjYsNCwxMC40LDQsMTQuNCwwbDIyLTIyQzI2Mi40LDU0LjgsMjYyLjQsNDguNCwyNTguNCw0NC40eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQxLjIsMTQwLjhIMTAuNGMtNS42LDAtMTAuNCw0LjgtMTAuNCwxMC40czQuNCwxMC40LDEwLjQsMTAuNGgzMC44YzUuNiwwLDEwLjQtNC44LDEwLjQtMTAuNCAgICBDNTEuNiwxNDUuNiw0Ni44LDE0MC44LDQxLjIsMTQwLjh6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNODAuNCwyMjEuNmMtMy42LTQtMTAuNC00LTE0LjQsMGwtMjIsMjJjLTQsNC00LDEwLjQsMCwxNC40czEwLjQsNCwxNC40LDBsMjItMjJDODQuNCwyMzIsODQuNCwyMjUuNiw4MC40LDIyMS42eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTgwLjQsNjYuNGwtMjItMjJjLTQtNC0xMC40LTQtMTQuNCwwcy00LDEwLjQsMCwxNC40bDIyLDIyYzQsNCwxMC40LDQsMTQuNCwwUzg0LjQsNzAuNCw4MC40LDY2LjR6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)}</style>
+
+		<style type="text/css">div.image {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDMwMy45MiAzMDMuOTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMwMy45MiAzMDMuOTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNC45MjIsMTA1LjcwNGwxNDMuODU3LDYxLjU3MmMxLjAxNSwwLjQ0MywyLjA5OSwwLjY1NCwzLjE4NSwwLjY1NHMyLjE2NS0wLjIyMiwzLjE4NS0wLjY1NGwxNDMuODU0LTYxLjU3MiAgICBjMy4wMzctMS4zMDMsNC45ODMtNC4zMTEsNC45MTQtNy42MTVjLTAuMDY4LTMuMzA2LTIuMTM2LTYuMjMzLTUuMjIxLTcuNDAzTDE1NC44MzgsMzUuOTczYy0xLjg1OS0wLjcwOS0zLjkwNS0wLjcwOS01Ljc1OSwwICAgIEw1LjIyNiw5MC42ODVjLTMuMDg1LDEuMTctNS4xNTIsNC4xMDMtNS4yMjQsNy40MDNDLTAuMDY2LDEwMS4zODcsMS44ODIsMTA0LjQwNiw0LjkyMiwxMDUuNzA0eiBNMTUxLjk1OSw1Mi4yMDlsMTIyLjIzMyw0Ni40ODggICAgbC0xMjIuMjMzLDUyLjMyTDI5LjcyNCw5OC42OThMMTUxLjk1OSw1Mi4yMDl6IiBmaWxsPSIjMDBmZjhjIi8+CgkJPHBhdGggZD0iTTQuOTIyLDE0MC43NDNsMTQ3LjAzNyw2Mi45MzZsMTQ3LjAzNC02Mi45MzZjNC4xMTgtMS43NjEsNi4wMjItNi41MjMsNC4yNjEtMTAuNjM0ICAgIGMtMS43NTYtNC4xMDMtNi41MDItNi4wMy0xMC42MzEtNC4yNjFMMTUxLjk1OSwxODYuMDZMMTEuMjksMTI1Ljg0OGMtNC4xMTYtMS43NjQtOC44NzMsMC4xNTMtMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTM0LjIyNSwwLjgwNywxMzguOTgyLDQuOTIyLDE0MC43NDN6IiBmaWxsPSIjMDBmZjhjIi8+CgkJPHBhdGggZD0iTTQuOTIyLDE3My4xNGwxNDcuMDM3LDYyLjkzOGwxNDcuMDM0LTYyLjkzOGM0LjExOC0xLjc2MSw2LjAyMi02LjUxOCw0LjI2MS0xMC42MzEgICAgYy0xLjc1Ni00LjEwMy02LjUwMi02LjAzMy0xMC42MzEtNC4yNjFMMTUxLjk1OSwyMTguNDZMMTEuMjksMTU4LjI0OWMtNC4xMTYtMS43NjItOC44NzMsMC4xNTItMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTY2LjYyMywwLjgwNywxNzEuMzc5LDQuOTIyLDE3My4xNHoiIGZpbGw9IiMwMGZmOGMiLz4KCQk8cGF0aCBkPSJNNC45MjIsMjA1LjU0MWwxNDcuMDM3LDYyLjkzOGwxNDcuMDM0LTYyLjkzOGM0LjExOC0xLjc2Miw2LjAyMi02LjUxOSw0LjI2MS0xMC42MzIgICAgYy0xLjc1Ni00LjEwMy02LjUwMi02LjAyMS0xMC42MzEtNC4yNjFMMTUxLjk1OSwyNTAuODZMMTEuMjksMTkwLjY0OGMtNC4xMTYtMS43NjEtOC44NzMsMC4xNTMtMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTk5LjAyMiwwLjgwNywyMDMuNzc5LDQuOTIyLDIwNS41NDF6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==)}</style>
+</head>
+	
+	<section class="first-side">
+    <div class="overlay2">        
+      <header class="clearfix">
+    <div class="logo">
+      <a href="#"><img src="logo.png" alt="" /></a>
+    </div>
+    <a href="#" id="touch-menu">Menu</a>
+    <nav>
+      <ul class="nav clearfix">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SERVICES</a></li>
+        <li><a href="#">PORTFOLIO</a></li>
+        <li><a href="#">TEAM</a></li>
+        <li><a href="#">BLOG</a></li>
+        <li><a href="#">CONTACT</a></li>
+        <a href=""><img src="search.png" class="social-media-header"></a>
+        <a href=""><img src="facebook-logo.png" class="social-media-header"></a>
+        <a href=""><img src="twitter.png" class="social-media-header"></a>
+        <a href=""><img src="linkedin-logo.png" class="social-media-header"></a>
+      </ul>
+    </nav>      
+  </header>
+
+
+    <div class="overlay">
+      <div class="text-first-side">
+        <p class="first-p">WE WORK HARD, WE RESULT PERFECT</p>
+        <h1 class="first-h1">CRAFTING DIGITAL AGENCY EXPERIENCES</h1>
+        <a class="button-explore">Explore Us</a>
+
+      </div>
+    </div>
+    <div class="first-side-div">
+      
+    </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+  	<section class="second-side"> 
+			<div class="row"> 
+				<div class="preview"> 
+					<p>ABOUT OUR DIGITAL AGENCY</p> 
+						<h3>Plantronics with its GN Netcom <b>wireless headset</b> creates the next generation<br> of wireless headset and other products such as wireless amplifiers, and<br> <b>wireless headset</b> telephone.</h3> 
+				</div> 
+			<div class="tree"> 
+				<figure class="figure1"> 
+					<img src="s1.jpg" class="image1"> 
+						<figcaption class="figcaption1"> 
+							<h5>ADDICTION WHIT GAMBLING</h5> 
+							<p>It is a good idea to think of your PC as an office. It stores files, programs, pictures. This can be compared to an actual office’s files </p>
+							<a href="" class="second-button">Explore</a> 
+						</figcaption> 
+				</figure> 
+
+				<figure class="figure1"> 
+					<img src="s2.jpg" class="image1">   
+						<figcaption class="figcaption1"> 
+						<h5>HEADSET NO LONGER WIRED</h5> 
+						<p>If you are in the market for a computer, there are a number of factors to consider. Will it be used for your home, your office or perhaps </p> 
+						<a href="" class="second-button">Explore</a> 
+					</figcaption> 
+				</figure> 
+
+
+				<figure class="figure1"> 
+					<img src="s3.jpg" class="image1"> 
+						<figcaption class="figcaption1"> 
+							<h5>LIFE ADVICE LOOKING AT WINDOW</h5> 
+							<p>Having a baby can be a nerve wrackingexp erience for new parents – not the nine months of pregnancy, I’m talking </p> 
+							<a href="" class="second-button">Explore</a> 
+						</figcaption> 
+				</figure> 
+			</div> 
+		</div> 
+	</section>
+
+
+
+
+
+
+
+	<section class="block4"> 
+		<div class="col"> 
+			<p>WHY CHOOSE US</p> 
+			<h2>We ensure perfect quality Digital <br> products for you</h2> 
+		</div> 
+
+		<div class="blocks"> 
+			<div class="subblock"> 
+				<div class="singleblock"> 
+					 
+						<div class="text"> 
+							<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4Ny4yMjIgNDg3LjIyMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg3LjIyMiA0ODcuMjIyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+CjxnPgoJPHBhdGggZD0iTTQ4Ni41NTQsMTg2LjgxMWMtMS42LTQuOS01LjgtOC40LTEwLjktOS4ybC0xNTItMjEuNmwtNjguNC0xMzcuNWMtMi4zLTQuNi03LTcuNS0xMi4xLTcuNWwwLDBjLTUuMSwwLTkuOCwyLjktMTIuMSw3LjYgICBsLTY3LjUsMTM3LjlsLTE1MiwyMi42Yy01LjEsMC44LTkuMyw0LjMtMTAuOSw5LjJzLTAuMiwxMC4zLDMuNSwxMy44bDExMC4zLDEwNi45bC0yNS41LDE1MS40Yy0wLjksNS4xLDEuMiwxMC4yLDUuNCwxMy4yICAgYzIuMywxLjcsNS4xLDIuNiw3LjksMi42YzIuMiwwLDQuMy0wLjUsNi4zLTEuNmwxMzUuNy03MS45bDEzNi4xLDcxLjFjMiwxLDQuMSwxLjUsNi4yLDEuNWwwLDBjNy40LDAsMTMuNS02LjEsMTMuNS0xMy41ICAgYzAtMS4xLTAuMS0yLjEtMC40LTMuMWwtMjYuMy0xNTAuNWwxMDkuNi0xMDcuNUM0ODYuODU0LDE5Ny4xMTEsNDg4LjE1NCwxOTEuNzExLDQ4Ni41NTQsMTg2LjgxMXogTTM0OS41NTQsMjkzLjkxMSAgIGMtMy4yLDMuMS00LjYsNy42LTMuOCwxMmwyMi45LDEzMS4zbC0xMTguMi02MS43Yy0zLjktMi4xLTguNi0yLTEyLjYsMGwtMTE3LjgsNjIuNGwyMi4xLTEzMS41YzAuNy00LjQtMC43LTguOC0zLjktMTEuOSAgIGwtOTUuNi05Mi44bDEzMS45LTE5LjZjNC40LTAuNyw4LjItMy40LDEwLjEtNy40bDU4LjYtMTE5LjdsNTkuNCwxMTkuNGMyLDQsNS44LDYuNywxMC4yLDcuNGwxMzIsMTguOEwzNDkuNTU0LDI5My45MTF6IiBmaWxsPSIjMmNmZmEwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+							<h4>Unique Design</h4> 
+								<p>Most people who work in an<br> office environment, buy<br> 		computer products, or have </p> 
+						</div> 
+				</div> 
+
+
+		<div class="singleblock magic"> 
+			
+				<div class="text"> 
+					<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9Ii0xMSAwIDQxMiA0MTIuMDM5ODQiIHdpZHRoPSI2NHB4Ij48cGF0aCBkPSJtMjc5LjEwMTU2MiAxNzIuNzA3MDMxIDI4LjM3ODkwNy02Ny42NDA2MjVjMS42NDQ1MzEtMy45MTc5NjguNjI4OTA2LTguNDQ5MjE4LTIuNTI3MzQ0LTExLjI5Njg3NS0zLjE2MDE1Ni0yLjg0Mzc1LTcuNzczNDM3LTMuMzgyODEyLTExLjUtMS4zMzk4NDNsLTYzLjYwOTM3NSAzNC44NjcxODctNTQuMTk5MjE5LTQ4LjU0Mjk2OWMtMy4xNzU3ODEtMi44NDM3NS03LjgwODU5My0zLjM2MzI4MS0xMS41MzEyNS0xLjI4OTA2Mi0zLjcyNjU2MiAyLjA3MDMxMi01LjczMDQ2OSA2LjI3NzM0NC00Ljk4ODI4MSAxMC40NzY1NjJsMTIuNzY1NjI1IDcyLjMzOTg0NC02Mi4zNTU0NjkgMzcuMzIwMzEyYy0zLjY0NDUzMSAyLjE3OTY4OC01LjUxMTcxOCA2LjQyMTg3Ni00LjY2NDA2MiAxMC41ODIwMzIuODUxNTYyIDQuMTYwMTU2IDQuMjM0Mzc1IDcuMzI4MTI1IDguNDQxNDA2IDcuOTA2MjVsMzguNDg0Mzc1IDUuMjgxMjUtODUuNDYwOTM3IDg1LjQ2NDg0NC0uMDA3ODEzLjAwNzgxMi0uMDA3ODEzLjAwMzkwNi01OC4zMzIwMzEgNTguMzMyMDMyYy0xMC42NTYyNSAxMC43NTM5MDYtMTAuNjIxMDkzIDI4LjEwMTU2Mi4wODU5MzggMzguODA0Njg3IDEwLjcwNzAzMSAxMC43MDcwMzEgMjguMDU0Njg3IDEwLjc0NjA5NCAzOC44MDQ2ODcuMDg1OTM3bDE0NS42NTYyNS0xNDUuNjU2MjUgOC41NTQ2ODggMzkuMzU5Mzc2Yy45MDYyNSA0LjE3NTc4MSA0LjM2NzE4NyA3LjMxMjUgOC42MTMyODEgNy44MDg1OTMuMzgyODEzLjA0Njg3NS43NzM0MzcuMDcwMzEzIDEuMTY0MDYzLjA3MDMxMyAzLjg0NzY1Ni0uMDAzOTA2IDcuMzU1NDY4LTIuMjE0ODQ0IDkuMDE1NjI0LTUuNjgzNTk0bDMxLjY0NDUzMi02Ni4xMjg5MDYgNzIuMTk5MjE4IDYuNjA1NDY4YzQuMjMwNDY5LjM5MDYyNiA4LjIzODI4Mi0xLjkzMzU5MyAxMC4wMDc4MTMtNS43OTY4NzQgMS43NjU2MjUtMy44NTkzNzYuOTAyMzQ0LTguNDE0MDYzLTIuMTUyMzQ0LTExLjM1OTM3NnptLTI0Ni4zNTkzNzQgMjE3LjIxODc1Yy0yLjkzMzU5NCAyLjkxMDE1Ny03LjY2NDA2MyAyLjg5ODQzOC0xMC41ODU5MzgtLjAxOTUzMS0yLjkxNzk2OS0yLjkyMTg3NS0yLjkyOTY4OC03LjY1MjM0NC0uMDIzNDM4LTEwLjU4NTkzOGw1MS4yNjU2MjYtNTEuMjY1NjI0IDEwLjYwNTQ2OCAxMC42MDU0Njh6bTY1LjQwMjM0My02NS40MDYyNS0xMC42MDU0NjktMTAuNjA1NDY5IDg5LjEyODkwNy04OS4xMjg5MDYgOC44MzU5MzcgMS4yMTA5MzggMS45OTIxODggOS4xNzU3ODF6bTE0OC4yNzczNDQtMTExLjIzMDQ2OWMtNC4xNjc5NjktLjM4MjgxMi04LjEyODkwNiAxLjg2NzE4OC05LjkzMzU5NCA1LjY0MDYyNmwtMjIuMDUwNzgxIDQ2LjA3NDIxOC0xMC44NzEwOTQtNTAuMDgyMDMxYy0uODkwNjI1LTQuMTA1NDY5LTQuMjUzOTA2LTcuMjE0ODQ0LTguNDE0MDYyLTcuNzg1MTU2bC01MC45MjU3ODItNi45OTIxODggNDMuODM5ODQ0LTI2LjIzODI4MWMzLjU1ODU5NC0yLjEyODkwNiA1LjQzMzU5NC02LjIzNDM3NSA0LjcxNDg0NC0xMC4zMTY0MDZsLTguOTM3NS01MC42NDA2MjUgMzcuOTI1NzgxIDMzLjk2ODc1YzMuMTYwMTU3IDIuODMyMDMxIDcuNzYxNzE5IDMuMzU5Mzc1IDExLjQ4MDQ2OSAxLjMyMDMxMmw0NC43MTA5MzgtMjQuNTA3ODEyLTE5Ljk1MzEyNiA0Ny41NTQ2ODdjLTEuNTk3NjU2IDMuODA0Njg4LS42OTE0MDYgOC4yMDMxMjUgMi4yODEyNSAxMS4wNzAzMTNsMzYuOTE0MDYzIDM1LjU4MjAzMXptMCAwIiBmaWxsPSIjMDBmZjhjIi8+PHBhdGggZD0ibTI4Ni4wODIwMzEgMjc4LjkyOTY4OGMtMi4zODI4MTItNC45ODQzNzYtOC4zNTE1NjItNy4wOTM3NS0xMy4zMzU5MzctNC43MTQ4NDRzLTcuMDkzNzUgOC4zNDc2NTYtNC43MTQ4NDQgMTMuMzMyMDMxbDExLjMzNTkzOCAyMy43NWMyLjM3ODkwNiA0Ljk4MDQ2OSA4LjM0NzY1NiA3LjA5Mzc1IDEzLjMzMjAzMSA0LjcxNDg0NCA0Ljk4NDM3NS0yLjM3ODkwNyA3LjA5NzY1Ni04LjM1MTU2MyA0LjcxODc1LTEzLjMzMjAzMXptMCAwIiBmaWxsPSIjMDBmZjhjIi8+PHBhdGggZD0ibTI0MC4yMDcwMzEgODAuNjg3NWM1LjUxOTUzMSAwIDEwLTQuNDc2NTYyIDEwLTEwdi02MC42ODc1YzAtNS41MjM0MzgtNC40ODA0NjktMTAtMTAtMTAtNS41MjM0MzcgMC0xMCA0LjQ3NjU2Mi0xMCAxMHY2MC42ODc1YzAgNS41MjM0MzggNC40NzY1NjMgMTAgMTAgMTB6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjxwYXRoIGQ9Im0zNzcuNDE3OTY5IDEzOS4zMzIwMzEtNDAuODQ3NjU3IDguNDQ1MzEzYy0zLjUwMzkwNi43MTQ4NDQtNi4zNTkzNzQgMy4yNS03LjQ4ODI4MSA2LjY0NDUzMS0xLjEyODkwNiAzLjM5ODQzNy0uMzU1NDY5IDcuMTM2NzE5IDIuMDI3MzQ0IDkuODA4NTk0IDIuMzgyODEzIDIuNjY3OTY5IDYuMDA3ODEzIDMuODYzMjgxIDkuNTExNzE5IDMuMTMyODEybDQwLjg0Mzc1LTguNDQ1MzEyYzMuNTA3ODEyLS43MTQ4NDQgNi4zNjMyODEtMy4yNSA3LjQ5MjE4Ny02LjY0ODQzOCAxLjEyNS0zLjM5NDUzMS4zNTU0NjktNy4xMzI4MTItMi4wMjczNDMtOS44MDQ2ODctMi4zODI4MTMtMi42NzE4NzUtNi4wMDc4MTMtMy44NjcxODgtOS41MTE3MTktMy4xMzI4MTN6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjxwYXRoIGQ9Im02OS4zOTQ1MzEgMTMxLjM5ODQzOCA0Ni4wMjczNDQgNy43NTc4MTJjMy41MzkwNjMuNjI1IDcuMTM2NzE5LS42OTUzMTIgOS40MzM1OTQtMy40NTcwMzFzMi45MzM1OTMtNi41NDI5NjkgMS42NzE4NzUtOS45MDYyNWMtMS4yNjU2MjUtMy4zNjMyODEtNC4yMzQzNzUtNS43ODkwNjMtNy43ODEyNS02LjM1OTM3NWwtNDYuMDIzNDM4LTcuNzU3ODEzYy01LjQyMTg3NS0uODY3MTg3LTEwLjUzMTI1IDIuNzk2ODc1LTExLjQ0NTMxMiA4LjIxMDkzOC0uOTEwMTU2IDUuNDE0MDYyIDIuNzEwOTM3IDEwLjU1NDY4NyA4LjExNzE4NyAxMS41MTE3MTl6bTAgMCIgZmlsbD0iIzAwZmY4YyIvPjwvc3ZnPgo=" />
+					<h4>Appropriate UX</h4> 
+						<p>Today, many people rely on<br> computers to do homework,<br> work, and create or store<br> useful </p> 
+				</div> 
+			</div> 
+		</div> 
+
+
+
+		<div class="subblock"> 
+			<div class="singleblock"> 
+				
+					<div class="text"> 
+						<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMwMi40IDMwMi40IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMDIuNCAzMDIuNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yMDQuOCw5Ny42QzE5MS4yLDg0LDE3Miw3NS4yLDE1MS4yLDc1LjJzLTQwLDguNC01My42LDIyLjRjLTEzLjYsMTMuNi0yMi40LDMyLjgtMjIuNCw1My42czguOCw0MCwyMi40LDUzLjYgICAgYzEzLjYsMTMuNiwzMi44LDIyLjQsNTMuNiwyMi40czQwLTguNCw1My42LTIyLjRjMTMuNi0xMy42LDIyLjQtMzIuOCwyMi40LTUzLjZTMjE4LjgsMTExLjIsMjA0LjgsOTcuNnogTTE5MC40LDE5MC40ICAgIGMtMTAsMTAtMjQsMTYtMzkuMiwxNnMtMjkuMi02LTM5LjItMTZzLTE2LTI0LTE2LTM5LjJzNi0yOS4yLDE2LTM5LjJzMjQtMTYsMzkuMi0xNnMyOS4yLDYsMzkuMiwxNnMxNiwyNCwxNiwzOS4yICAgIFMyMDAuNCwxODAuNCwxOTAuNCwxOTAuNHoiIGZpbGw9IiMwMGZmOGMiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yOTIsMTQwLjhoLTMwLjhjLTUuNiwwLTEwLjQsNC44LTEwLjQsMTAuNGMwLDUuNiw0LjgsMTAuNCwxMC40LDEwLjRIMjkyYzUuNiwwLDEwLjQtNC44LDEwLjQtMTAuNCAgICBDMzAyLjQsMTQ1LjYsMjk3LjYsMTQwLjgsMjkyLDE0MC44eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTE1MS4yLDI1MC44Yy01LjYsMC0xMC40LDQuOC0xMC40LDEwLjRWMjkyYzAsNS42LDQuOCwxMC40LDEwLjQsMTAuNGM1LjYsMCwxMC40LTQuOCwxMC40LTEwLjR2LTMwLjggICAgQzE2MS42LDI1NS42LDE1Ni44LDI1MC44LDE1MS4yLDI1MC44eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI1OCwyNDMuNmwtMjItMjJjLTMuNi00LTEwLjQtNC0xNC40LDBzLTQsMTAuNCwwLDE0LjRsMjIsMjJjNCw0LDEwLjQsNCwxNC40LDBTMjYyLDI0Ny42LDI1OCwyNDMuNnoiIGZpbGw9IiMwMGZmOGMiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTEuMiwwYy01LjYsMC0xMC40LDQuOC0xMC40LDEwLjR2MzAuOGMwLDUuNiw0LjgsMTAuNCwxMC40LDEwLjRjNS42LDAsMTAuNC00LjgsMTAuNC0xMC40VjEwLjQgICAgQzE2MS42LDQuOCwxNTYuOCwwLDE1MS4yLDB6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjU4LjQsNDQuNGMtNC00LTEwLjQtNC0xNC40LDBsLTIyLDIyYy00LDQtNCwxMC40LDAsMTQuNGMzLjYsNCwxMC40LDQsMTQuNCwwbDIyLTIyQzI2Mi40LDU0LjgsMjYyLjQsNDguNCwyNTguNCw0NC40eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQxLjIsMTQwLjhIMTAuNGMtNS42LDAtMTAuNCw0LjgtMTAuNCwxMC40czQuNCwxMC40LDEwLjQsMTAuNGgzMC44YzUuNiwwLDEwLjQtNC44LDEwLjQtMTAuNCAgICBDNTEuNiwxNDUuNiw0Ni44LDE0MC44LDQxLjIsMTQwLjh6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNODAuNCwyMjEuNmMtMy42LTQtMTAuNC00LTE0LjQsMGwtMjIsMjJjLTQsNC00LDEwLjQsMCwxNC40czEwLjQsNCwxNC40LDBsMjItMjJDODQuNCwyMzIsODQuNCwyMjUuNiw4MC40LDIyMS42eiIgZmlsbD0iIzAwZmY4YyIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTgwLjQsNjYuNGwtMjItMjJjLTQtNC0xMC40LTQtMTQuNCwwcy00LDEwLjQsMCwxNC40bDIyLDIyYzQsNCwxMC40LDQsMTQuNCwwUzg0LjQsNzAuNCw4MC40LDY2LjR6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+						<h4>Perfect Visual</h4> 
+							<p>Having a baby can be a nerve<br> wracking experience for new<br> parents – not the nine mo nths</p> 
+					</div> 
+			</div> 
+
+
+		<div class="singleblock"> 
+			 
+				<div class="text"> 
+					<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDMwMy45MiAzMDMuOTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMwMy45MiAzMDMuOTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNC45MjIsMTA1LjcwNGwxNDMuODU3LDYxLjU3MmMxLjAxNSwwLjQ0MywyLjA5OSwwLjY1NCwzLjE4NSwwLjY1NHMyLjE2NS0wLjIyMiwzLjE4NS0wLjY1NGwxNDMuODU0LTYxLjU3MiAgICBjMy4wMzctMS4zMDMsNC45ODMtNC4zMTEsNC45MTQtNy42MTVjLTAuMDY4LTMuMzA2LTIuMTM2LTYuMjMzLTUuMjIxLTcuNDAzTDE1NC44MzgsMzUuOTczYy0xLjg1OS0wLjcwOS0zLjkwNS0wLjcwOS01Ljc1OSwwICAgIEw1LjIyNiw5MC42ODVjLTMuMDg1LDEuMTctNS4xNTIsNC4xMDMtNS4yMjQsNy40MDNDLTAuMDY2LDEwMS4zODcsMS44ODIsMTA0LjQwNiw0LjkyMiwxMDUuNzA0eiBNMTUxLjk1OSw1Mi4yMDlsMTIyLjIzMyw0Ni40ODggICAgbC0xMjIuMjMzLDUyLjMyTDI5LjcyNCw5OC42OThMMTUxLjk1OSw1Mi4yMDl6IiBmaWxsPSIjMDBmZjhjIi8+CgkJPHBhdGggZD0iTTQuOTIyLDE0MC43NDNsMTQ3LjAzNyw2Mi45MzZsMTQ3LjAzNC02Mi45MzZjNC4xMTgtMS43NjEsNi4wMjItNi41MjMsNC4yNjEtMTAuNjM0ICAgIGMtMS43NTYtNC4xMDMtNi41MDItNi4wMy0xMC42MzEtNC4yNjFMMTUxLjk1OSwxODYuMDZMMTEuMjksMTI1Ljg0OGMtNC4xMTYtMS43NjQtOC44NzMsMC4xNTMtMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTM0LjIyNSwwLjgwNywxMzguOTgyLDQuOTIyLDE0MC43NDN6IiBmaWxsPSIjMDBmZjhjIi8+CgkJPHBhdGggZD0iTTQuOTIyLDE3My4xNGwxNDcuMDM3LDYyLjkzOGwxNDcuMDM0LTYyLjkzOGM0LjExOC0xLjc2MSw2LjAyMi02LjUxOCw0LjI2MS0xMC42MzEgICAgYy0xLjc1Ni00LjEwMy02LjUwMi02LjAzMy0xMC42MzEtNC4yNjFMMTUxLjk1OSwyMTguNDZMMTEuMjksMTU4LjI0OWMtNC4xMTYtMS43NjItOC44NzMsMC4xNTItMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTY2LjYyMywwLjgwNywxNzEuMzc5LDQuOTIyLDE3My4xNHoiIGZpbGw9IiMwMGZmOGMiLz4KCQk8cGF0aCBkPSJNNC45MjIsMjA1LjU0MWwxNDcuMDM3LDYyLjkzOGwxNDcuMDM0LTYyLjkzOGM0LjExOC0xLjc2Miw2LjAyMi02LjUxOSw0LjI2MS0xMC42MzIgICAgYy0xLjc1Ni00LjEwMy02LjUwMi02LjAyMS0xMC42MzEtNC4yNjFMMTUxLjk1OSwyNTAuODZMMTEuMjksMTkwLjY0OGMtNC4xMTYtMS43NjEtOC44NzMsMC4xNTMtMTAuNjM0LDQuMjYxICAgIEMtMS4xMDUsMTk5LjAyMiwwLjgwNywyMDMuNzc5LDQuOTIyLDIwNS41NDF6IiBmaWxsPSIjMDBmZjhjIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" />
+					<h4>Different Layout</h4> 
+						<p>It won’t be a bigger problem to<br> find one video game lover in<br> your neighbor. Since the</p> 
+				</div> 
+			</div> 
+		</div> 
+		</div> 
+	</section>
+
+
+
+
+
+
+
+	<section class="fourth-side"> 
+
+		<div class="charts"> 
+			<div class="chart-block"> 
+				<div class="chart"> 
+			
+				<div class="text"> 
+					<div class="c100 p20 big">
+                    <span>80%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <p>WEB DESIGN</p>
+</div> 
+</div> 
+<div class="chart"> 
+
+<div class="text"> 
+<div class="c100 p25 big">
+                    <span>75%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <p>UI/UX DESIGN</p>
+</div> 
+</div> 
+</div> 
+<div class="chart-block"> 
+<div class="chart"> 
+
+<div class="text"> 
+<div class="c100 p40 big">
+                    <span>60%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <p>MOBILE APP</p>
+</div> 
+</div> 
+<div class="chart"> 
+
+<div class="text"> 
+			<div class="c100 p10 big">
+                    <span>90%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                <p>WEB DEVELOPMENT</p>
+</div> 
+</div> 
+</div> 
+</div> 
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="sixth-block"> 
+<div class="six-col"> 
+<p>CREATIVE PEOPLE</p> 
+<h2>Team work builds trust and <br>
+trust builds growth</h2> 
+</div> 
+<div class="workers"> 
+<div class="divide-block6"> 
+<div class="worker"> 
+<img src="t1.jpg">
+<div class="worker-info"> 
+<h4>Ethal Devis</h4> 
+<p>Managing Director (Sales)</p> 
+</div> 
+</div> 
+<div class="worker"> 
+<img src="t2.jpg"> 
+<div class="worker-info"> 
+<h4>Rodney Cooper</h4> 
+<p>Creative Art Director</p> 
+</div> 
+</div> 
+</div> 
+<div class="divide-block6"> 
+<div class="worker"> 
+<img src="t3.jpg">
+<div class="worker-info"> 
+<h4>Dora Walker</h4> 
+<p>Senior Core Developer</p> 
+</div> 
+</div> 
+<div class="worker"> 
+<img src="t4.jpg">
+<div class="worker-info"> 
+<h4>Lena Keller</h4> 
+<p>Creative Content Developer</p> 
+</div> 
+</div> 
+</div> 
+</div> 
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="ninth-block"> 
+		
+	<div class="reviews"> 
+		<div class="divide-block9"> 
+			<div class="review"> 
+			<img src="ts1.png">
+				<div class="review-info"> 
+					<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+					
+					<h4>VIDEO GAMES PLAYING WITH <br> IMAGINATION</h4> 
+					<h5>25 October, 2018 | By Mark Wiens</h5>
+					
+					
+					
+				</div> 
+			</div> 
+
+	<div class="review"> 
+		<img src="ts2.png"> 
+			<div class="review-info"> 
+				<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+					
+					<h4>VIDEO GAMES PLAYING WITH <br> IMAGINATION</h4> 
+					<h5>25 October, 2018 | By Mark Wiens</h5>
+				
+			</div> 
+		</div> 
+	</div> 
+
+
+	<div class="divide-block9"> 
+		<div class="review"> 
+			<img src="ts3.png">
+				<div class="review-info"> 
+					<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+					
+					<h4>VIDEO GAMES PLAYING WITH <br> IMAGINATION</h4> 
+					<h5>25 October, 2018 | By Mark Wiens</h5>
+					
+				</div> 
+		</div> 
+
+	
+		</div> 
+	</div> 
+
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="tenth-block"> 
+		<div class="ten-col"> 
+			<p>LATEST FROM BLOG</p> 
+				<h2>Publish what you want to <br>
+					not requires social</h2> 
+		</div> 
+
+	<div class="blogs"> 
+		<div class="divide-block10"> 
+			<div class="blog"> 
+			<img src="p1.jpg">
+				<div class="blog-info"> 
+					<h5>25 October, 2018 | By Mark Wiens</h5>
+					<h4>VIDEO GAMES PLAYING WITH <br> IMAGINATION</h4> 
+					<hr>
+					<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+					<div class="arrow-but"> 
+					<a class="arrow-button">→</a>
+					</div>
+				</div> 
+			</div> 
+
+	<div class="blog"> 
+		<img src="p2.jpg"> 
+			<div class="blog-info"> 
+				<h5>25 October, 2017 | By Mark Wiens</h5>
+				<h4>ADDICTION WHEN GAMBLING<br> BECOMES A PROBLEM</h4> 
+				
+				<hr>
+				<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+				<div class="arrow-but"> 
+					<a class="arrow-button">→</a>
+					<p class="testing">kekeke</p>
+					</div>
+			</div> 
+		</div> 
+	</div> 
+
+
+	<div class="divide-block10"> 
+		<div class="blog"> 
+			<img src="p3.jpg">
+				<div class="blog-info"> 
+					<h5>25 October, 2017 | By Mark Wiens</h5>
+					<h4>COMPUTER HARDWARE DESKTOPS <br>AND NOTEBOOKS</h4> 
+					
+					<hr>
+					<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p> 
+					<div class="arrow-but"> 
+					<a class="arrow-button">→</a>
+					</div>
+				</div> 
+		</div> 
+
+	<div class="blog"> 
+			<img src="p4.jpg">
+				<div class="blog-info"> 
+					<h5>25 October, 2017 | By Mark Wiens</h5>
+					<h4>MAKE MYSPACE YOUR BEST<br> DESIGNED SPACE</h4> 
+					
+					<hr>
+					<p>Computers have become<br> ubiquitous in almost every facet of<br> our lives. At work, desk jockeys spend<br> hours in front of their</p>
+					<div class="arrow-but"> 
+					<a class="arrow-button">→</a>
+					</div>
+
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

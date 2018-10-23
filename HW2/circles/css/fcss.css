@@ -1,0 +1,181 @@
+.eight-side { 
+	padding: 150px 0; 
+	background: #f9f9ff; 
+
+} 
+
+.row-figure { 
+	display: flex; 
+	flex-flow: row; 
+	
+
+} 
+
+
+.preview { 
+	display: flex; 
+	flex-flow: column; 
+	align-items: center; 
+	justify-content: center; 
+	padding-bottom: 70px; 
+} 
+
+.preview p { 
+	text-align: center; 
+	font-family: Poppins;
+	font-weight: 200;
+	color: gray;
+
+
+} 
+
+.preview h3 { 
+	justify-content: center; 
+	line-height: 1.5; 
+	text-align: center; 
+	font-size: 24px; 
+	color: #777777; 
+	font-family: Poppins;
+	font-weight: 200;
+	color: gray;
+	
+} 
+
+.preview h3 b { 
+	font-weight: 300; 
+	color: #222222 ; 
+}
+
+
+.tree-figure { 
+	display: flex; 
+	flex-flow: row; 
+	justify-content: center; 
+	align-items: center;
+	max-width: 1200px;
+	width: 100%;
+} 
+
+.figure1 { 
+	display: flex; 
+	flex-flow: column; 
+	background-color: white; 
+	width:30%; 
+	margin-left: 15px; 
+	margin-right: 15px; 
+	padding-bottom: 50px; 
+	margin-bottom: 50px; 
+
+} 
+
+.figcaption-one { 
+	text-align: center; 
+	background-color: #F9F9FF;
+} 
+
+
+
+.price1 {
+	display: flex;
+	flex-direction: column;
+	background: -webkit-linear-gradient(left, rgba(60, 64, 143, 0.95) 20%, rgba(91, 97, 207, 0.95) 100%);
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.price1 h2{
+	margin-top: 5px;
+}
+
+.price1 img {
+	margin-top: 20px;
+}
+
+.price2 p {
+	margin-top: -10px;
+
+}
+
+.price2 h1 {
+	color: #00FF8B;
+}
+
+.price2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background: -webkit-linear-gradient(right, rgba(60, 64, 143, 0.95) 100%, rgba(91, 97, 207, 0.95) 100%);
+}
+
+.eight-button { 
+	line-height: 40px; 
+	padding: 0 40px; 
+	border-radius: 20px; 
+	background: transparent; 
+	border: 1px solid #00ff8c; 
+	color: #222222; 
+	font-weight: 600; 
+	padding: 10px 40px; 
+	margin-bottom: 100px; 
+	font-family: Poppins;
+	font-weight: 600;
+	
+} 
+
+.figcaption-one h5 { 
+	padding-top: 45px; 
+	font-weight: 600; 
+	color: black; 
+	font-family: Poppins;
+	font-weight: 600;
+} 
+
+.figcaption-one p { 
+	padding-top: 20px; 
+	text-align: center; 
+	padding-bottom: 20px; 
+	font-family: Poppins;
+	font-weight: 200;
+} 
+
+.image1 { 
+	max-width: 100%; 
+	height: auto; 
+
+}
+.eight-button:hover { 
+	background: #00ff8c; 
+	color: #fff; 
+	box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2); 
+	transition: 0.3s;
+
+} 
+
+@media (max-width:960px) { 
+	.tree-figure{ 
+	display: flex; 
+	flex-flow: column; 
+	align-items: center; 
+	justify-content: space-between; 
+} 
+
+.figure1 { 
+	padding-left: 0px; 
+	padding-right: 0px; 
+	width: 50%; 
+	margin-left: 0px; 
+	margin-right: 0px; 
+	padding-bottom: 50px; 
+	margin-bottom: 50px; 
+} 
+
+
+.eight:hover { 
+	background: #00ff8c; 
+	color: #fff; 
+	box-shadow: 0px 10px 20px 0px rgba(60, 64, 143, 0.2); 
+	transition: 0.3s;
+	} 
+
+}
